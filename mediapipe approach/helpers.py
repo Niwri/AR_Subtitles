@@ -14,7 +14,7 @@ def normalizePoints(points: tensor) -> tensor:
   # do stuff
   return normalizedPoints
 
-def allDirectoryImageToNormalizedPoints(images) -> tensor:
+def allDirectoryImageToNormalizedPoints(directory: str) -> tensor:
   '''
   takes a directory of images, and returns a tensor of normalized 18 points
   '''
