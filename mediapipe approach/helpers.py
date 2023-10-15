@@ -1,39 +1,8 @@
 from torch import tensor
 import cv2
 import mediapipe as mp
-
-mp_drawing = mp.solutions.drawing_utils
-mp_hands = mp.solutions.hands
-
-def get18Points(image_path: str) -> tensor:
-  '''
-  takes an image, and returns the 18 points untouched
-  '''
-  image = cv2.imread(image_path)
-
-  with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.5, max_num_hands=1) as hands: 
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    image = cv2.flip(image, 1)
-    image.flags.writeable = False
-    results = hands.process(image)
-    image.flags.writeable = True
-
-    untouchedtensor = []
-    #actually grabbing the points
-    if results.multi_hand_landmarks:
-        
-      for hand in results.multi_hand_landmarks:
-        for point in (mp_hands.HandLandmark):
-          x = hand.landmark[point].x
-          y = hand.landmark[point].y
-          z = hand.landmark[point].z
-          untouchedtensor.append([x,y,z])
-    return tensor(untouchedtensor)                  
-                
-            
-        
-
-
+import numpy as np
+import torch
   
 def normalizePoints(points: tensor) -> tensor:
   '''
@@ -41,15 +10,16 @@ def normalizePoints(points: tensor) -> tensor:
   X_i = (X_i - min(X)) /(max(X) - min(X))
   Y_i = (Y_i - min(Y)) /(max(Y) - min(Y))
   '''
-  normalizedPoints = tensor()
+  normalizedPoints = points.detach().numpy()
   # do stuff
+  maxValues = [np.amax(normalizedPoints[:, 0]), np.amax(normalizedPoints[:, 1]), np.amax(normalizedPoints[:, 2])]
+  minValues = [np.amin(normalizedPoints[:, 0]), np.amin(normalizedPoints[:, 1]), np.amin(normalizedPoints[:, 2])]
+  rangeValues = [maxValues[i] - minValues[i] for i in range(3)]
+
+  for i in range(3):
+    normalizedPoints[:, i] = (normalizedPoints[:, i] - minValues[i]) / rangeValues[i]
+  
+  noramlizedPoints = torch.tensor(normalizedPoints)
   return normalizedPoints
 
-def allDirectoryImageToNormalizedPoints(directory: str) -> tensor:
-  '''
-  takes a directory of images, and returns a tensor of normalized 18 points
-  '''
-  allDirectoryNormlalizedPoints = tensor()
-  # do stuff
-  return allDirectoryNormlalizedPoints
 
