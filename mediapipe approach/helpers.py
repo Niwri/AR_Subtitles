@@ -22,4 +22,13 @@ def normalizePoints(points: tensor) -> tensor:
   noramlizedPoints = torch.tensor(normalizedPoints)
   return normalizedPoints
 
+def replaceWithNormal():
+  allalphabet=['a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y']
+  for alphabet in allalphabet:
+    points = np.load(f"mediapipe approach/landmarkTrainData/{alphabet}.npy").tolist()
+    points = [normalizePoints(torch.tensor(point)) for point in points]
+    np.save(f"mediapipe approach/landmarkTrainData/{alphabet}.npy", points)
+
+replaceWithNormal()
+
 
