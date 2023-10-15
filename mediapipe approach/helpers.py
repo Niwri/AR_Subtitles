@@ -19,7 +19,7 @@ def normalizePoints(points: tensor) -> tensor:
   for i in range(3):
     normalizedPoints[:, i] = (normalizedPoints[:, i] - minValues[i]) / rangeValues[i]
   
-  noramlizedPoints = torch.tensor(normalizedPoints)
+  normalizedPoints = torch.tensor(normalizedPoints)
   return normalizedPoints
 
 def replaceWithNormal():
@@ -28,7 +28,5 @@ def replaceWithNormal():
     points = np.load(f"mediapipe approach/landmarkTrainData/{alphabet}.npy").tolist()
     points = [normalizePoints(torch.tensor(point)) for point in points]
     np.save(f"mediapipe approach/landmarkTrainData/{alphabet}.npy", points)
-
-replaceWithNormal()
 
 
