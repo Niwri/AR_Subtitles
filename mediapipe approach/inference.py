@@ -44,9 +44,9 @@ def predict(model: GestureClassifier, img: np.ndarray) -> str:
    allalphabet = ['a','b','c','d','e','f','g','h','i','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y']
    return allalphabet[torch.argmax(output)]
 
-def main(graphicDisplay: bool = True) -> None:
+def main(graphicDisplay: bool = True, comPort: str = 'COM3') -> None:
   try:
-     ser = serial.Serial('COM3', 9600)
+     ser = serial.Serial(comPort, 9600)
      openSerial = True
   except:
       print("Serial port not opened!")
@@ -108,5 +108,7 @@ def main(graphicDisplay: bool = True) -> None:
 
   cap.release()
   cv2.destroyAllWindows()
+  if openSerial:
+    ser.close()
 
 main(graphicDisplay=True)
