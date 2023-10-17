@@ -39,8 +39,8 @@ Prior to reaching the MediaPipe approach, we tried to train our own image classi
 Here are some key items (in no particular order) that we want to implement in further iterations of this project:
 ## Caption glasses mobile 
 The current design uses cable connections to a laptop or a connection to a Raspberry Pi. The cable connection completely immobilizes the user, and the Raspberry Pi makes the device significantly unwearable due to its weight. The following two approaches show some promise in terms of turning Caption Glasses into a more independent device.
-- Using an ESP32i, we would be able to control the display and conduct image processing in one go. Given the compact size of an ESP32, it would make Caption Glasses truly mobile.
-- Using a HC06 Bluetooth Module, we would be able to communicate between the image processing unit (laptop) and the display unit remotely. While this approach is less standalone than the former, it would be a much safer option since ESP32i's may not have support for the key libraries that we need to run the computer vision model (MediaPipe, PyTorch)
+- Using an ESP32-EYE, we would be able to control the display and conduct image processing in one go. Given the compact size of an ESP32, it would make Caption Glasses truly mobile.
+- Using a HC06 Bluetooth Module, we would be able to communicate between the image processing unit (laptop) and the display unit remotely. While this approach is less standalone than the former, it would be a much safer option since ESP32-EYE's may not have support for the key libraries that we need to run the computer vision model (MediaPipe, PyTorch)
 ## Displaying Comprehensive Words
 The current design simply streams all the characters onto the OLED display, so users could get somewhat confused (understandably) after the device fills up with characters that are in a seemingly random sequence. However, using an NLP processor (possibly BERT or a customly-trained processor), we would be able to strategically deploy spaces and other grammatical tools to ensure that the output makes syntactic sense.
 ## Controllable Caption Glasses
