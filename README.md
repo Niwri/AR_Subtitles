@@ -29,10 +29,10 @@ Here are some key items (in no particular order) that we want to implement in fu
 The current design uses cable connections to a laptop, or a connection to a Raspberry Pi. The cable connection completely immobilizes the user, and the Raspberry Pi makes the device significantly unwearable due to its weight. The following two appraoches show some promise in terms of turning Caption Glasses into a more independent device.
 - Using an ESP32i, we would be able to control the display and conduct image processing in one go. Given the compact size of an ESP32, it would make Caption Glasses truly mobile.
 - Using a HC06 Bluetooth Module, we would be able to communicate between the image processing unit (laptop) and the display unit remotely. While this approach is less standalone than the former, it would be a much safer option since ESP32i's may not have support for the key libraries that we need to run the computer vision model (MediaPipe, PyTorch)
-## Caption Glasses (with comprehensible words)
+## Displaying Comprehensive Words
 The current design simply streams all the characters onto the OLED display, so users get somewhat confused (understandably) after the device fills up with characters that are in a seemingly random sequence. However, using a NLP processor (possibly BERT or a customly-trained processor), we would be able to strategically deploy spaces and other gramatical tools to ensure that the output makes syntatic sense.
-## Caption Glasses (with some control)
+## Controllable Caption Glasses
 The current design does only two things, capture the character spelt by the hand closest to you and streams it onto the OLED display for the user to see. A tool that would greatly improve the user's experience is to come up with more controls for the user to be able to control the font size of the text, the speed at which the signing person can comfortably sign at (currently, this rate is capped at 1 character per second to make sure there is no noise being captured). To accomplish this, we can incorporate more gestures to the computer vision model (such as up, down and other gestures that imitate the experience of using a modern smartphone).
-## Deploying
+
 # Built With
-arduino, arduino-c, C++, mediapipe, neural-net-modelling, numpy, Python, pytorch, raspberry-pi, Solidworks
+Arduino Nano, Arduino-C, Raspberry Pi 4B, Python, PyTorch (Neural Networks), MediaPipe, OpenCV2, Logitech WebCam, Prusa I3 3D printer, SolidWorks
