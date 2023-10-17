@@ -15,9 +15,9 @@ The final version of the computer vision algorithm is as follows:
 1. Using the MediaPipe Hand Landmarks library (by Google), 21 landmarks of a hand is located using an X,Y,Z coordinate system
 2. The coordinates of each landmark is then fed into a custom trained Artificial Neural Network, built on PyTorch
 3. The prediction is then communicated to the display unit using the Serial connection
-This CV algorithm is (surprisingly) effective! The test data accuracy was 0.98 on the final model, trained with a batch size of 500, learning rate of 1e-4 and 29 epochs.
+This CV algorithm is (surprisingly) effective! The test data accuracy was 0.98 on the final model, trained with a batch size of 300, learning rate of 1e-2 and 29 epochs.
 ## Physical Modelling
-Caption glasses looks like a small box, attached to the right side of your glasses. The OLED display is facing forward, and a mirror placed at 45 degrees to reflect the rays from the display through a 100mm lens. The rays are then projected onto a surface (in our final iteration, this was a second mirror) placed near your right eye. The modelling was completed on SolidWorks, and printed using a Prusa I3 3D printer over the span of 3 hours!
+Caption glasses looks like a small box, attached to the right side of your glasses. The OLED display is facing forward, and a mirror placed at 45 degrees to reflect the rays from the display through a 100mm lens. The rays are then projected onto a surface (in our final iteration, this was a second mirror) placed near your right eye. The modelling was completed on SolidWorks, and printed using a Prusa I3 3D printer over the span of 2 hours!
 
 ![Caption Glasses POV](images/rightSide.jpg)
 
